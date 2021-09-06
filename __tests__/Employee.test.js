@@ -1,17 +1,6 @@
 const Employee = require('../lib/Employee');
 
-
-describe('Employee', () => {
-    describe('getName', () => {
-
-    })
-    describe('getId', () => {
-        
-    })
-    describe('getEmail', () => {
-
-    })
-    describe('getRole', () => {
-
-    })
-})
+it('retrieves employee name from input data', () => {
+    const name = 'Jeff'
+    expect(new Employee(name)).toBe('Jeff')
+});
