@@ -146,7 +146,7 @@ function managerCard() {
   return managerInfo;
 }
 function internCard() {
-  let internInfo;
+  let internInfo = "";
   for (let i = 0; i < internArray.length; i++) {
     const info = internArray[i];
     internInfo += `
@@ -167,7 +167,7 @@ function internCard() {
 }
 
 function engineerCard() {
-  let engineerInfo;
+  let engineerInfo = "";
   for (let i = 0; i < engineerArray.length; i++) {
     const info = engineerArray[i];
     engineerInfo += `
