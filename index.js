@@ -29,7 +29,7 @@ function getMainInfo() {
     ])
     .then((answer) => {
       mainArray.push(answer.project);
-      getEmployeeInfo;
+      getEmployeeInfo();
     });
 }
 
@@ -134,6 +134,7 @@ function managerCard() {
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">${info.name}</span>
+          <span class="card-title">${info.getRole()}</span>
           <ul class="list-group list-group-flush">
           <li class="list-group-item">${info.id}</li> 
           <li class="list-group-item">${info.getOfficeNumber()}</li>
@@ -158,9 +159,10 @@ function internCard() {
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">${info.name}</span>
+          <span class="card-title">${info.getRole()}</span>
           <ul class="list-group list-group-flush">
           <li class="list-group-item">${info.id}</li> 
-          <li class="list-group-item">${info.getOfficeNumber()}</li>
+          <li class="list-group-item">${info.getSchool()}</li>
         </ul>
         </div>
         <div class="card-action">
@@ -171,34 +173,31 @@ function internCard() {
   </div>
   `;
   }
-  return managerInfo;
+  return internInfo;
 }
-function managerCard() {
-  let managerInfo;
-  for (let i = 0; i < managerArray.length; i++) {
-    const info = managerArray[i];
-    managerInfo += `  <div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">${info.name}</span>
-          <ul class="list-group list-group-flush">
-          <li class="list-group-item">${info.id}</li> 
-          <li class="list-group-item">${data.getOfficeNumber()}</li>
-        </ul>
-        </div>
-        <div class="card-action">
-          <a href="#">${info.email}</a>
-        </div>
-      </div>
+function engineerCard() {
+  let engineerInfo;
+  for (let i = 0; i < engineerArray.length; i++) {
+    const info = engineerArray[i];
+    engineerInfo += `
+    <div class="card-body">
+      <h5 class="card-title">${info.name}</h5>
+      <p class="card-text">${info.getRole()} </p>
     </div>
-  </div>
-  `;
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${data.id}</li> 
+      <li class="list-group-item">${data.getGithub()}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">${data.email}</a>
+    </div>
+  
+    `;
   }
-  return managerInfo;
+  return engineerInfo;
 }
 
-function createTitleCard() {
+function createTitle() {
   for (let i = 0; i < mainArray.length; i++) {
     const title = mainArray[i];
 
@@ -210,17 +209,25 @@ function generateHTML() {
   fs.writeFile(
     "./dist/index.html",
     `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-</head>
-<body>
-    
-</body>
-</html>`
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${createTitle()}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <header class="p-3 mb-2 bg-primary text-white text-xl-center">${createTitle()}</header>
+        <div class="card d-flex justify-content-around" style="width: 18rem;">
+        ${managerCard()}
+        ${internCard()}
+        ${engineerCard()}      
+        </div>
+    </body>
+    </html>`,
+    (err) => {
+      if (err) throw err;
+    }
   );
 }
