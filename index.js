@@ -126,27 +126,22 @@ function addEmployee() {
 }
 
 function managerCard() {
-  let managerInfo;
+  let managerInfo = "";
   for (let i = 0; i < managerArray.length; i++) {
     const info = managerArray[i];
-    managerInfo += `  <div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">${info.name}</span>
-          <span class="card-title">${info.getRole()}</span>
-          <ul class="list-group list-group-flush">
-          <li class="list-group-item">${info.id}</li> 
-          <li class="list-group-item">${info.getOfficeNumber()}</li>
-        </ul>
-        </div>
-        <div class="card-action">
-          <a href="#">${info.email}</a>
-        </div>
-      </div>
+    managerInfo += `
+    <div class="card-body">
+      <h5 class="card-title">${info.name}</h5>
+      <p class="card-text">${info.getRole()} </p>
     </div>
-  </div>
-  `;
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${info.id}</li> 
+      <li class="list-group-item">${info.getOfficeNumber()}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">${info.email}</a>
+    </div>
+    `;
   }
   return managerInfo;
 }
@@ -154,27 +149,23 @@ function internCard() {
   let internInfo;
   for (let i = 0; i < internArray.length; i++) {
     const info = internArray[i];
-    internInfo += `  <div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">${info.name}</span>
-          <span class="card-title">${info.getRole()}</span>
-          <ul class="list-group list-group-flush">
-          <li class="list-group-item">${info.id}</li> 
-          <li class="list-group-item">${info.getSchool()}</li>
-        </ul>
-        </div>
-        <div class="card-action">
-          <a href="#">${info.email}</a>
-        </div>
-      </div>
+    internInfo += `
+    <div class="card-body">
+      <h5 class="card-title">${info.name}</h5>
+      <p class="card-text">${info.getRole()} </p>
     </div>
-  </div>
-  `;
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${info.id}</li> 
+      <li class="list-group-item">${info.getSchool()}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">${info.email}</a>
+    </div>
+    `;
   }
   return internInfo;
 }
+
 function engineerCard() {
   let engineerInfo;
   for (let i = 0; i < engineerArray.length; i++) {
@@ -185,13 +176,12 @@ function engineerCard() {
       <p class="card-text">${info.getRole()} </p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">${data.id}</li> 
-      <li class="list-group-item">${data.getGithub()}</li>
+      <li class="list-group-item">${info.id}</li> 
+      <li class="list-group-item">${info.getGithub()}</li>
     </ul>
     <div class="card-body">
-      <a href="#" class="card-link">${data.email}</a>
+      <a href="#" class="card-link">${info.email}</a>
     </div>
-  
     `;
   }
   return engineerInfo;
