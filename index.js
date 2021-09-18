@@ -106,6 +106,25 @@ function getEmployeeInfo() {
     });
 }
 
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Would you like to add another person?",
+        name: "another",
+        choices: ["Yes", "No"],
+      },
+    ])
+    .then((response) => {
+      if (response.another === "Yes") {
+        getEmployeeInfo();
+      } else {
+        generateHTML();
+      }
+    });
+}
+
 function managerCard() {
   let managerInfo;
   for (let i = 0; i < managerArray.length; i++) {
@@ -179,23 +198,12 @@ function managerCard() {
   return managerInfo;
 }
 
-function addEmployee() {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        message: "Would you like to add another person?",
-        name: "another",
-        choices: ["Yes", "No"],
-      },
-    ])
-    .then((response) => {
-      if (response.another === "Yes") {
-        getEmployeeInfo();
-      } else {
-        generateHTML();
-      }
-    });
+function createTitleCard() {
+  for (let i = 0; i < mainArray.length; i++) {
+    const title = mainArray[i];
+
+    return title;
+  }
 }
 
 function generateHTML() {
