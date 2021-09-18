@@ -1,114 +1,44 @@
-const inquirer = require('inquirer')
-const fs = require('fs');
+const Intern = require("./lib/Intern");
+const Engineer = require("./lib/Engineer");
+const Manager = require("./lib/Manager");
 
-const questions = [
-{
-    type: 'input',
-    name: 'manager_name',
-    message: "What's your manager's name",
-  },
-  {
-    type: 'input',
-    name: 'manager_id',
-    message: "What's your manager's id",
-  },
-  {
-    type: 'input',
-    name: 'manager_email',
-    message: "What's your manager's email address",
-  },
-  {
-    type: 'input',
-    name: 'office_number',
-    message: "What's your manager's office number",
-  },
-  {
-    type: 'list',
-    name: 'add',
-    message: 'Add another employee?',
-    choices: ['Engineer', 'Intern', 'Finished'],
-    filter(val) {
-      return val.toLowerCase();
-    },
-  },
-  {
-    type: 'input',
-    name: 'engineer_name',
-    message: "What's your engineer's name",
-    when: (data) => data.add === 'engineer'
-  },
-  {
-    type: 'input',
-    name: 'id',
-    message: "What's your engineer's id",
-    when: (answers) => answers.add === 'engineer'
-  },
-  {
-    type: 'input',
-    name: 'email',
-    message: "What's your engineer's email address",
-    when: (answers) => answers.add === 'engineer'
-  },
-  {
-    type: 'input',
-    name: 'github',
-    message: "What's your engineer's github username",
-    when: (answers) => answers.add === 'engineer'
-  },
-  {
-    type: 'list',
-    name: 'add',
-    message: 'Add another employee?',
-    choices: ['Engineer', 'Intern', 'Finished'],
-    filter(val) {
-      return val.toLowerCase();
-    },
-  },
-  {
-    type: 'input',
-    name: 'intern_name',
-    message: "What's your intern's name",
-    when: (answers) => answers.add === 'intern'
-  },
-  {
-    type: 'input',
-    name: 'id',
-    message: "What's your intern's id",
-    when: (answers) => answers.add === 'intern'
-  },
-  {
-    type: 'input',
-    name: 'email',
-    message: "What's your intern's email address",
-    when: (answers) => answers.add === 'intern'
-  },
-  {
-    type: 'input',
-    name: 'school',
-    message: "What's school did your intern attend",
-    when: (answers) => answers.add === 'intern'
-  },
-  {
-    type: 'list',
-    name: 'add',
-    message: 'Add another employee?',
-    choices: ['Engineer', 'Intern', 'Finished'],
-    filter(val) {
-      return val.toLowerCase();
-    },
-    when: (answers) => answers.add === 'intern'
-  },
-];
+const inquirer = require("inquirer");
+const fs = require("fs");
 
+const managerArray = [];
+const internArray = [];
+const engineerArray = [];
+const mainArray = [];
 
+function getMainInfo() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Please name the project/team",
+        name: "project_name",
+        validate: (value) => {
+          if (value) {
+            return true;
+          } else {
+            return "We need a project/team name";
+          }
+        },
+      },
+    ])
+    .then((answer) => {
+      mainArray.push();
+    });
+}
 
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) =>
-  err ? console.error(err) : console.log('Success!') )
-};
+    err ? console.error(err) : console.log("Success!")
+  );
+}
 
 function init() {
-  inquirer.prompt(questions)
+  inquirer.prompt(questions);
   // .then((data) => generateHtml(data))
   // .then((data) => writeToFile('./dist/index.html', data))
   // .then((data) => generateCss(data))
